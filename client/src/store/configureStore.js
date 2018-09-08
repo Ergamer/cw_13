@@ -4,10 +4,12 @@ import {routerMiddleware, routerReducer} from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 
 import usersReducer from "./reducers/users";
+import placesReducer from "./reducers/places";
 import {saveState, loadState} from "./localStorage";
 
 const rootReducer = combineReducers({
     users: usersReducer,
+    places: placesReducer,
     routing: routerReducer
 });
 
