@@ -31,7 +31,7 @@ class AllPlaces extends Component {
                         key={place._id}
                         id={place._id}
                         title={place.title}
-                        user={place.user.displayName}
+                        description={place.description}
                         image={place.image}
                     />
                 ))}

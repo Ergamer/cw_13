@@ -13,7 +13,6 @@ const OnePlaceList = props => {
     if (props.image) {
         image = config.apiUrl + '/uploads/' + props.image;
     }
-    console.log(props.user)
     return (
         <Panel>
             <Panel.Body>
@@ -33,6 +32,7 @@ const OnePlaceList = props => {
 OnePlaceList.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
     image: PropTypes.string,
     user: PropTypes.string.isRequired
 };

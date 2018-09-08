@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navbar} from "react-bootstrap";
+import {Nav, Navbar, NavItem} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 
 import UserMenu from "./Menus/UserMenu";
@@ -11,6 +11,11 @@ const Toolbar = ({user, logout}) => (
       <Navbar.Brand>
         <LinkContainer to="/" exact><a>Cafes</a></LinkContainer>
       </Navbar.Brand>
+        <Nav>
+            <LinkContainer to="/new-place" exact>
+                <NavItem>Add new place</NavItem>
+            </LinkContainer>
+        </Nav>
     </Navbar.Header>
     <Navbar.Collapse>
       {user ? <UserMenu user={user} logout={logout} /> : <AnonymousMenu/>}

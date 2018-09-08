@@ -10,16 +10,13 @@ export const createPlaceSuccess = () => {
 };
 
 export const  createPlace = (placeData) => {
-    return (dispatch, getState) => {
-        const token = getState().users.user.token;
-        console.log(token)
-        const headers = {'Auth-Token': token};
-        return axios.post('/places', placeData, {headers}).then(
+    console.log(placeData);
+    return dispatch => {
+        axios.post('/places', placeData).then(
             response => {
                 dispatch(createPlaceSuccess());
-                dispatch(push('/'));
+                dispatch(push('/places'));
             }
-
         )
     }
 };

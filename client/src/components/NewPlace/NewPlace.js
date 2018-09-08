@@ -17,7 +17,7 @@ class NewPlace extends Component {
         console.log('asdfafsd');
         return (
             <Fragment>
-                <PageHeader>New palce</PageHeader>
+                <PageHeader>New place</PageHeader>
                 <PlaceForm
                     onSubmit={this.createPlace}
                     user={this.props.users}
