@@ -15,6 +15,7 @@ const initialState = {
     token: null,
     oneUser: null,
     users: [],
+
 };
 
 const reducer = (state = initialState, action) => {

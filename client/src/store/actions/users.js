@@ -18,17 +18,17 @@ const registerUserFailure = error => {
 
 export const registerUser = userData => {
     return dispatch => {
-        axios.post('/users', userData).then(
+        return axios.post('/users', userData).then(
             response => {
                 dispatch(registerUserSuccess());
-                dispatch(push('/users'));
+                dispatch(push('/'));
                 NotificationManager.success('Success', 'Registration successful');
             },
             error => {
                 dispatch(registerUserFailure(error.response));
             }
-        )
-    }
+        );
+    };
 };
 
 const loginUserSuccess = (user, token) => {

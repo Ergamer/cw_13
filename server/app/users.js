@@ -6,8 +6,6 @@ const Users = require('../models/Users');
 const auth = require('../middleware/auth');
 const permit = require('../middleware/permit');
 const router = express.Router();
-const https = require('https');
-
 
 const config = require('../config');
 
