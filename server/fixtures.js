@@ -18,7 +18,7 @@ db.once('open', async () => {
 
     await Cafes.create({
         title: 'Gudov`s',
-        description: 'Attractor school',
+        description: '5Attractor school, народ здесь вроде непьющий',
         image: 'attractor.jpg',
         date: '08-09-2018: 19-56'
     }, {

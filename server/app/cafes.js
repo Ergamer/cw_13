@@ -46,9 +46,31 @@ const createRouter = () => {
     });
 
     router.get('/:id', (req, res) => {
-
         Cafes.findById(req.params.id)
             .then(place => res.send(place))
+            .catch(() => res.sendStatus(500));
+    });
+
+    router.post('/rate', auth, (req, res) => {
+        Cafes.findOne({_id: req.body.id}, (err, cafe) => {
+            const index = cafe.votes.findIndex(vote => vote.rateUser.equals(req.user._id));
+            if (index === -1) {
+                cafe.votes = [...cafe.votes, {rate: req.body.rate, rateUser: req.user._id}];
+            }
+            else {
+                cafe.votes[index].rate = req.body.rate;
+            }
+            const result = cafe.votes.reduce((sum, vote) => {
+                return sum + vote.rate;
+            }, 0);
+            cafe.rating = result / cafe.votes.length;
+            cafe.save(function (err) {
+                if (err) console.error('ERROR!', err);
+            });
+        }).then(result => {
+            if (result) res.send(result);
+            else res.sendStatus(404);
+        })
             .catch(() => res.sendStatus(500));
     });
 
