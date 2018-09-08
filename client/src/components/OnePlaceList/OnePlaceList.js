@@ -14,7 +14,7 @@ const OnePlaceList = props => {
         image = config.apiUrl + '/uploads/' + props.image;
     }
 
-    const formattedDate = moment(new Date).format('DD-MM-YYYY: HH-mm');
+    const formattedDate = moment(new Date()).format('DD-MM-YYYY: HH-mm');
 
     return (
         <Panel>

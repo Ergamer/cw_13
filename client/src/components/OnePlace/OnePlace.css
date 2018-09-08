@@ -1,0 +1,10 @@
+.one-place-title {
+    margin-bottom: 60px;
+}
+.comment {
+    margin-bottom: 50px;
+    border-bottom: 1px solid grey;
+}
+.now-comment {
+    border-top: 1px solid grey;
+}
