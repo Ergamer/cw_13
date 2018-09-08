@@ -26,7 +26,7 @@ const createRouter = () => {
 
     router.get('/', (req, res) => {
         Cafes.find()
-            .then(place => res.send(place))
+            .then(places => res.send(places))
             .catch(() => res.sendStatus(500));
     });
 
@@ -44,7 +44,12 @@ const createRouter = () => {
             .catch(error => res.status(400).send(error));
     });
 
+    router.get('/:id', (req, res) => {
 
+        Cafes.findById(req.params.id)
+            .then(place => res.send(place))
+            .catch(() => res.sendStatus(500));
+    });
 
     return router;
 

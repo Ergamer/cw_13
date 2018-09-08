@@ -10,7 +10,6 @@ export const createPlaceSuccess = () => {
 };
 
 export const  createPlace = (placeData) => {
-    console.log(placeData);
     return dispatch => {
         axios.post('/places', placeData).then(
             response => {
@@ -27,7 +26,7 @@ export const fetchPlacesSuccess = places => {
 
 export const fetchPlaces = () => {
     return dispatch => {
-        return axios.get('/cocktails').then(
+        return axios.get('/places').then(
             response => dispatch(fetchPlacesSuccess(response.data))
         )
     };

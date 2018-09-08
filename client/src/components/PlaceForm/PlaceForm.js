@@ -8,7 +8,7 @@ class PlaceForm extends Component {
     state = {
         title: '',
         description: '',
-        images: [],
+        image: '',
 
     };
 
@@ -80,7 +80,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-        createPlace: (placeData) =>  dispatch(createPlace(placeData))
+        createPlace: placeData =>  dispatch(createPlace(placeData))
     }
 );
 export default connect(mapStateToProps, mapDispatchToProps)(PlaceForm);

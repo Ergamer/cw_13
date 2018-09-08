@@ -10,9 +10,7 @@ class AllPlaces extends Component {
     componentDidMount() {
         this.props.fetchPlaces();
     }
-
     render() {
-        console.log(this.props, '*********');
         return (
             <Fragment>
                 <PageHeader>
@@ -43,6 +41,7 @@ class AllPlaces extends Component {
 const mapStateToProps = state => {
     return {
         places: state.places.places,
+        place: state.places.place,
         user: state.users.user
     }
 };
