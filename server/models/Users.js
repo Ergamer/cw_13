@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const nanoid = require('nanoid');
 const SALT_WORK_FACTOR = 10;
-const jwt = require('jsonwebtoken');
-const config = require('../config');
 
 const Schema = mongoose.Schema;
 
-const UsersSchema = new Schema({
+const UserSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -15,7 +14,7 @@ const UsersSchema = new Schema({
             validator: async function (value) {
                 if (!this.isModified('username')) return true;
 
-                const user = await Users.findOne({username: value});
+                const user = await User.findOne({username: value});
                 if (user) throw new Error('This user already exists');
                 return true;
             },
@@ -26,40 +25,33 @@ const UsersSchema = new Schema({
         type: String,
         required: true
     },
-    role: {
-        type: String,
-        default: 'user',
-        enum: ['user', 'admin']
-    },
-    image: {
-        type: String,
-        required: true
-    }
+    token: String
 });
 
-UsersSchema.pre('save', async function (next) {
+UserSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
+
     const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
     this.password = await bcrypt.hash(this.password, salt);
 
     next();
 });
 
-UsersSchema.methods.checkPassword = function (password) {
-    return bcrypt.compare(password, this.password);
-};
-
-UsersSchema.methods.generateToken = function () {
-    return jwt.sign({id: this._id}, config.jwt.secret, {expiresIn: config.jwt.expires});
-};
-
-UsersSchema.set('toJSON', {
+UserSchema.set('toJSON', {
     transform: (doc, ret, options) => {
         delete ret.password;
         return ret;
     }
 });
 
-const Users = mongoose.model('Users', UsersSchema);
+UserSchema.methods.checkPassword = function(password) {
+    return bcrypt.compare(password, this.password);
+};
+
+UserSchema.methods.generateToken = function() {
+    this.token = nanoid();
+};
+
+const Users = mongoose.model('Users', UserSchema);
 
 module.exports = Users;

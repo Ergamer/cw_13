@@ -1,34 +1,35 @@
-import { applyMiddleware, compose, createStore } from "redux";
-import { routerMiddleware, routerReducer } from "react-router-redux";
-import { persistCombineReducers, persistStore } from "redux-persist";
-import createHistory from "history/createBrowserHistory";
 import thunkMiddleware from "redux-thunk";
-import storage from "redux-persist/lib/storage";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
+import {routerMiddleware, routerReducer} from "react-router-redux";
+import createHistory from "history/createBrowserHistory";
+
+import usersReducer from "./reducers/users";
+import {saveState, loadState} from "./localStorage";
+
+const rootReducer = combineReducers({
+    users: usersReducer,
+    routing: routerReducer
+});
 
 export const history = createHistory();
 
 const middleware = [
-	thunkMiddleware,
-	routerMiddleware(history)
+    thunkMiddleware,
+    routerMiddleware(history)
 ];
-
-const persistConfig = {
-	key: "root",
-	storage,
-	blacklist: ['nav']
-};
-
-const rootReducer = persistCombineReducers(persistConfig, {
-	
-	routing: routerReducer
-});
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(applyMiddleware(...middleware));
 
-export default () => {
-	const store = createStore(rootReducer, enhancers);
-	const persistor = persistStore(store);
-	return {store, persistor};
-}
+const persistedState = loadState();
+
+const store = createStore(rootReducer, persistedState, enhancers);
+
+store.subscribe(() => {
+    saveState({
+        users: store.getState().users
+    });
+});
+
+export default store;
