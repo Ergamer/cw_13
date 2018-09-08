@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Button, PageHeader} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-import {fetchPlaces} from "../../store/actions/places";
+import {deleteOnePlace, fetchPlaces} from "../../store/actions/places";
 import OnePlaceList from '../../components/OnePlaceList/OnePlaceList';
 
 class AllPlaces extends Component {
@@ -31,6 +31,7 @@ class AllPlaces extends Component {
                         title={place.title}
                         description={place.description}
                         image={place.image}
+                        onDelete={this.props.deleteOnePlace}
                     />
                 ))}
             </Fragment>
@@ -48,7 +49,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchPlaces: () => dispatch(fetchPlaces())
+        fetchPlaces: () => dispatch(fetchPlaces()),
+        deleteOnePlace: (id) => dispatch(deleteOnePlace(id))
     }
 };
 

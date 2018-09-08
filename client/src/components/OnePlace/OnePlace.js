@@ -21,6 +21,13 @@ class OnePlace extends Component {
         rating: 0
     };
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user) {
+            const index = nextProps.place.votes.findIndex(vote => vote.rateUser === nextProps.user._id);
+            if (index === -1) return this.setState({rating: 0});
+            else return this.setState({rating: nextProps.place.votes[index].rate});
+        }
+    }
     changeRating = newRating => {
         this.setState({rating: newRating});
     };
@@ -62,19 +69,19 @@ class OnePlace extends Component {
                             <p>{this.props.place.description}</p>
                         </div>
                         <div>
-                            <p>{this.props.text}</p>
+                            <p style={{marginBottom: '20px', borderBottom: '1px solid grey'}}>{this.props.text}</p>
                         </div>
                         <Form className="this-user-place-rating">
                             <div className="this-place-info">
                                 <div className="rating">
                                     <span className="rating_title">Rating:</span>
                                     <StarRatings
-                                        rating={this.props.currentPlace.rating}
+                                        rating={this.props.place.rating}
                                         starDimension="30px"
                                         starSpacing="5px"
                                         starRatedColor="rgba(255,0,0,1)"
                                     />
-                                    <div>({this.props.currentPlace.votes ? this.props.currentPlace.votes.length : 0} votes)</div>
+                                    <div>({this.props.place.votes ? this.props.place.votes.length : 0} votes)</div>
                                 </div>
                             </div>
                         </Form>
@@ -135,7 +142,9 @@ const mapStateToProps = state => {
         places: state.places.places,
         users: state.users.user,
         place: state.places.place,
-        comments: state.comments.comments
+        comments: state.comments.comments,
+        currentPlace: state.places.currentPlace,
+
     }
 };
 

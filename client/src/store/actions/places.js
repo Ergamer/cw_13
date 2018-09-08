@@ -31,8 +31,8 @@ export const fetchPlaces = () => {
         )
     };
 };
-export const fetchOnePlaceSuccess = (currentPlace) => {
-    return {type: FETCH_ONE_PLACE_SUCCESS, currentPlace}
+export const fetchOnePlaceSuccess = (place) => {
+    return {type: FETCH_ONE_PLACE_SUCCESS, place}
 };
 
 export const getOnePlace = (id) => {
@@ -47,4 +47,15 @@ export const getOnePlace = (id) => {
 
 export const submitPlaceRating = (id, rate) => {
     return {type: CHANGE_PLACE_RATE, id, rate};
+};
+
+
+export const deleteOnePlace = (id) => {
+    return dispatch => {
+        return axios.delete('/places/' + id).then(
+            response => {
+                return dispatch(fetchPlaces())
+            }
+        )
+    }
 };

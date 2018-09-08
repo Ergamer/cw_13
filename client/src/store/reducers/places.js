@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
         case FETCH_PLACES_SUCCESS:
             return {...state, places: action.places};
         case FETCH_ONE_PLACE_SUCCESS:
-            return {...state, currentPlace: action.currentPlace};
+            return {...state, place: action.place};
         default:
             return state;
     }

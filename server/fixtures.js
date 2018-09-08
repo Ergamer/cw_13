@@ -16,6 +16,21 @@ db.once('open', async () => {
         console.log('Collections were not present, skipping drop...');
     }
 
+    const [Admin, Vasya, Aybek] = await Users.create({
+        username: 'admin',
+        password: 'admin',
+        role: 'admin',
+        description: 'Main user'
+    }, {
+        username: 'Vasya',
+        password: '123',
+        role: 'user',
+    }, {
+        username: 'Aybek',
+        password: '123',
+        role: 'user',
+    });
+
     await Cafes.create({
         title: 'Gudov`s',
         description: '5Attractor school, народ здесь вроде непьющий',

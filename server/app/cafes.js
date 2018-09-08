@@ -74,6 +74,18 @@ const createRouter = () => {
             .catch(() => res.sendStatus(500));
     });
 
+    router.delete('/:id', [auth, permit('admin')], async (req, res) => {
+        const cafe = await Cafes.findById(req.params.id);
+        if (!cafe) {
+            return res.sendStatus(404);
+        }
+
+        cafe.remove()
+            .then(() => res.send('Place was deleted!'))
+            .catch(error => res.status(400).send(error));
+    });
+
+
     return router;
 
 };

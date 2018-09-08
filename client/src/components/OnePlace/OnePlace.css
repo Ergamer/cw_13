@@ -11,6 +11,16 @@
 .rate-macker {
     margin-bottom: 40px;
 }
+.this-user-place-rating {
+    border-bottom: 1px solid grey;
+    margin-bottom: 20px;
+    padding-bottom: 25px;
+}
+.rate-macker {
+    border-bottom: 1px solid grey;
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+}
 .place_rate {
     padding-top: 20px;
     display: flex;
