@@ -3,7 +3,8 @@ import {FETCH_ONE_PLACE_SUCCESS, FETCH_PLACES_SUCCESS} from "../actions/actionTy
 const initialState = {
     places: [],
     place: null,
-    loading: false
+    loading: false,
+    currentPlace: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,7 +12,7 @@ const reducer = (state = initialState, action) => {
         case FETCH_PLACES_SUCCESS:
             return {...state, places: action.places};
         case FETCH_ONE_PLACE_SUCCESS:
-            return {...state, place: action.place};
+            return {...state, currentPlace: action.currentPlace};
         default:
             return state;
     }

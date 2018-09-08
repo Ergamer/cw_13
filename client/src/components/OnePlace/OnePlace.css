@@ -8,3 +8,26 @@
 .now-comment {
     border-top: 1px solid grey;
 }
+.rate-macker {
+    margin-bottom: 40px;
+}
+.place_rate {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+button.rate_this {
+    border-color: gold;
+    margin-left: 40px;
+    -webkit-box-shadow: 1px 0 40px 0 rgba(255, 215, 0, 1);
+    -moz-box-shadow:    1px 0 40px 0 rgba(255, 215, 0, 1);
+    box-shadow:         1px 0 40px 0 rgba(255, 215, 0, 1);
+}
+
+button.rate_this:hover {
+    box-shadow: none;
+    background: gold;
+    color: #000;
+}

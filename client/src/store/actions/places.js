@@ -1,5 +1,5 @@
 import axios from '../../axios-api';
-import {CREATE_PLACE_SUCCESS, FETCH_ONE_PLACE_SUCCESS, FETCH_PLACES_SUCCESS} from "./actionTypes";
+import {CHANGE_PLACE_RATE, CREATE_PLACE_SUCCESS, FETCH_ONE_PLACE_SUCCESS, FETCH_PLACES_SUCCESS} from "./actionTypes";
 import {push} from "react-router-redux";
 
 
@@ -31,8 +31,8 @@ export const fetchPlaces = () => {
         )
     };
 };
-export const fetchOnePlaceSuccess = (place) => {
-    return {type: FETCH_ONE_PLACE_SUCCESS, place}
+export const fetchOnePlaceSuccess = (currentPlace) => {
+    return {type: FETCH_ONE_PLACE_SUCCESS, currentPlace}
 };
 
 export const getOnePlace = (id) => {
@@ -43,4 +43,8 @@ export const getOnePlace = (id) => {
             }
         )
     }
+};
+
+export const submitPlaceRating = (id, rate) => {
+    return {type: CHANGE_PLACE_RATE, id, rate};
 };

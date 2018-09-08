@@ -20,8 +20,29 @@ const CafesSchema = new Schema({
         required: true
     },
     comments: {
-        type: String,
-
+        type: [{
+            text: {
+                type: String,
+                required: true
+            }
+        }],
+    },
+    votes: {
+        type: [{
+            rate: {
+                type: Number,
+                required: true
+            },
+            rateUser: {
+                type: Schema.Types.ObjectId,
+                ref: 'Users',
+                required: true
+            }
+        }]
+    },
+    rating: {
+        type: Number,
+        default: 0
     }
 });
 

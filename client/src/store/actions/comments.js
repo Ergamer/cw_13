@@ -11,7 +11,7 @@ export const addCommentSuccess = () => {
 
 export const  addComment = (commentData) => {
     return dispatch => {
-        axios.post('/comments', commentData).then(
+        axios.post('/', commentData).then(
             response => {
                 dispatch(addCommentSuccess());
                 dispatch(getOnePlace());
