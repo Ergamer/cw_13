@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, Panel} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
-
+import moment from 'moment';
 import config from '../../config';
 import notFound from '../../assets/images/not-found.jpeg';
 
@@ -13,6 +13,9 @@ const OnePlaceList = props => {
     if (props.image) {
         image = config.apiUrl + '/uploads/' + props.image;
     }
+
+    const formattedDate = moment(new Date).format('DD-MM-YYYY: HH-mm');
+
     return (
         <Panel>
             <Panel.Body>
@@ -24,6 +27,9 @@ const OnePlaceList = props => {
                 <Link to={'/places/' + props.id}>
                     {props.title}
                 </Link>
+                <div className="place_date">
+                    {formattedDate}
+                </div>
             </Panel.Body>
         </Panel>
     );

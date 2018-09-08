@@ -9,7 +9,7 @@ const Toolbar = ({user, logout}) => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <LinkContainer to="/" exact><a>Cafes</a></LinkContainer>
+        <LinkContainer to="/places" exact><a>Cafes</a></LinkContainer>
       </Navbar.Brand>
         <Nav>
             <LinkContainer to="/new-place" exact>

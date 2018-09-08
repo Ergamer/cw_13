@@ -37,6 +37,7 @@ const createRouter = () => {
         } else {
             placeData.image = null;
         }
+        placeData.date = new Date();
         const place = new Cafes(placeData);
 
         place.save()

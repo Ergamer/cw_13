@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Panel} from "react-bootstrap";
 import {getOnePlace} from "../../store/actions/places";
-import './OneCocktail.css';
 
 
 class OnePlace extends Component{
@@ -10,6 +9,10 @@ class OnePlace extends Component{
         this.props.getOnePlace(this.props.match.params.id);
 
     }
+
+    state = {
+      comment: ''
+    };
 
     render () {
         return (
@@ -21,6 +24,21 @@ class OnePlace extends Component{
                             <img src={'http://localhost:8000/uploads/' + this.props.place.image} alt=""/>
                             <h2>{this.props.place.title}</h2>
                             <p>{this.props.place.description}</p>
+                        </div>
+                        <div>
+                            <p style={{marginTop: '50px', fontWeight: 'bold'}}>Add review</p>
+                            <textarea
+                                name="description"
+                                type="text"
+                                value={this.state.comments}
+                                onChange={this.inputChangeHandler}
+                                required
+                                style={{width:'70%'}}
+                            />
+                        </div>
+                        <div>
+                            <p> Upload new photo</p>
+                            <input type="file"/>
                         </div>
                     </Panel.Body>: null
                 }
